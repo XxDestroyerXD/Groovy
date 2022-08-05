@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ConstraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:overScrollMode="always"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/txt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="104dp"
+        android:text="Trending Songs :"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <HorizontalScrollView
+        android:layout_width="411dp"
+        android:layout_height="317dp"
+        android:layout_marginTop="140dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txtartist3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="76dp"
+                android:layout_marginTop="40dp"
+                android:text="Ed Sheeran"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@+id/txtartist2"
+                app:layout_constraintTop_toBottomOf="@+id/S1003" />
+
+            <ImageButton
+                android:id="@+id/S1004"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginStart="44dp"
+                android:onClick="handleSelection"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toEndOf="@+id/S1003"
+                app:layout_constraintTop_toTopOf="@+id/S1003"
+                app:srcCompat="@drawable/glimpse_of_us" />
+
+            <TextView
+                android:id="@+id/title2"
+                android:layout_width="123dp"
+                android:layout_height="30dp"
+                android:layout_marginBottom="24dp"
+                android:text="Billie Jean"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@+id/S1002"
+                app:layout_constraintStart_toStartOf="@+id/S1002" />
+
+            <TextView
+                android:id="@+id/title4"
+                android:layout_width="123dp"
+                android:layout_height="30dp"
+                android:layout_marginBottom="24dp"
+                android:text="Glimpse of eyes"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@+id/S1004"
+                app:layout_constraintStart_toStartOf="@+id/S1004" />
+
+            <TextView
+                android:id="@+id/txtartist4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="40dp"
+                android:text="Joji"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@+id/txtartist3"
+                app:layout_constraintTop_toBottomOf="@+id/S1004" />
+
+            <ImageButton
+                android:id="@+id/S1001"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="60dp"
+                android:onClick="handleSelection"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/michael_buble_collection" />
+
+            <TextView
+                android:id="@+id/Title1"
+                android:layout_width="123dp"
+                android:layout_height="30dp"
+                android:layout_marginBottom="24dp"
+                android:text="The way you look tonight"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@+id/S1001"
+                app:layout_constraintStart_toStartOf="@+id/S1001" />
+
+            <TextView
+                android:id="@+id/title3"
+                android:layout_width="123dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="24dp"
+                android:text="One"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@+id/S1003"
+                app:layout_constraintStart_toStartOf="@+id/S1003" />
+
+            <TextView
+                android:id="@+id/txtartist2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="68dp"
+                android:layout_marginTop="40dp"
+                android:text="Michael Jackson"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@+id/txtartist1"
+                app:layout_constraintTop_toBottomOf="@+id/S1002" />
+
+            <ImageButton
+                android:id="@+id/S1002"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginStart="44dp"
+                android:onClick="handleSelection"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toEndOf="@+id/S1001"
+                app:layout_constraintTop_toTopOf="@+id/S1001"
+                app:srcCompat="@drawable/billie_jean" />
+
+            <ImageButton
+                android:id="@+id/S1003"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginStart="44dp"
+                android:onClick="handleSelection"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toEndOf="@+id/S1002"
+                app:layout_constraintTop_toTopOf="@+id/S1002"
+                app:srcCompat="@drawable/photograph" />
+
+            <TextView
+                android:id="@+id/txtartist1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="40dp"
+                android:text="Michael Buble"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/S1001"
+                app:layout_constraintTop_toBottomOf="@+id/S1001" />
+
+            <ImageView
+                android:id="@+id/Add1"
+                android:layout_width="53dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="24dp"
+                android:contentDescription="S1001"
+                android:onClick="addtoplaylist"
+                app:layout_constraintStart_toStartOf="@+id/S1001"
+                app:layout_constraintTop_toBottomOf="@+id/txtartist1"
+                app:srcCompat="@android:drawable/ic_input_add" />
+
+            <ImageView
+                android:id="@+id/Add2"
+                android:layout_width="53dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="108dp"
+                android:layout_marginTop="24dp"
+                android:contentDescription="S1002"
+                android:onClick="addtoplaylist"
+                app:layout_constraintStart_toEndOf="@+id/Add1"
+                app:layout_constraintTop_toBottomOf="@+id/txtartist2"
+                app:srcCompat="@android:drawable/ic_input_add" />
+
+            <ImageView
+                android:id="@+id/Add3"
+                android:layout_width="53dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="112dp"
+                android:layout_marginTop="24dp"
+                android:contentDescription="S1003"
+                android:onClick="addtoplaylist"
+                app:layout_constraintStart_toEndOf="@+id/Add2"
+                app:layout_constraintTop_toBottomOf="@+id/txtartist3"
+                app:srcCompat="@android:drawable/ic_input_add" />
+
+            <ImageView
+                android:id="@+id/Add4"
+                android:layout_width="53dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="112dp"
+                android:layout_marginTop="24dp"
+                android:contentDescription="S1004"
+                android:onClick="addtoplaylist"
+                app:layout_constraintStart_toEndOf="@+id/Add3"
+                app:layout_constraintTop_toBottomOf="@+id/txtartist4"
+                app:srcCompat="@android:drawable/ic_input_add" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </HorizontalScrollView>
+
+    <Button
+        android:id="@+id/btnViewPlaylist"
+        android:layout_width="79dp"
+        android:layout_height="65dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="28dp"
+        android:background="@drawable/ic_baseline_playlist_play_24"
+        android:onClick="gotoplaylist"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/profileview"
+        android:layout_width="35dp"
+        android:layout_height="41dp"
+        android:onClick="gotoprofile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_person_outline_24" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="79dp"
+        android:layout_height="65dp"
+        android:layout_marginEnd="56dp"
+        android:background="@drawable/ic_baseline_home_24"
+        app:layout_constraintEnd_toStartOf="@+id/btnViewPlaylist"
+        app:layout_constraintTop_toTopOf="@+id/btnViewPlaylist" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
