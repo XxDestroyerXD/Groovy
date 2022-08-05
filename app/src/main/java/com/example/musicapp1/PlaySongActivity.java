@@ -52,8 +52,8 @@ public class PlaySongActivity extends AppCompatActivity {
 
     Boolean shuffleFlag = false;
     Boolean repeatFlag = false;
-    Button shuffleBtn;
-    Button repeatBtn ;
+    ImageView shuffleBtn;
+    ImageView repeatBtn ;
 
 
     BarVisualizer audioVisualizeView;
@@ -73,7 +73,7 @@ public class PlaySongActivity extends AppCompatActivity {
         //currentindex is the position of the current song playing in the array
         currentIndex = songData.getInt("index");
         audioVisualizeView = findViewById(R.id.barVisualizer);
-        audioVisualizeView.setColor(ContextCompat.getColor(this,R.color.teal_200));
+        audioVisualizeView.setColor(ContextCompat.getColor(this,R.color.purple_500));
         audioVisualizeView.setDensity(50);
 
 
@@ -111,7 +111,7 @@ public class PlaySongActivity extends AppCompatActivity {
 
         });
 
-        shuffleBtn = findViewById(R.id.shuffleBtn);
+        shuffleBtn = findViewById(R.id.shufflebtn);
         repeatBtn = findViewById(R.id.repeatBtn);
         playsong(filelink);
 
