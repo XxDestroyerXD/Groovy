@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,8 @@ public class SongAdapter extends RecyclerView.Adapter<MyView> implements Filtera
         this.songs = songs;
         this.songsFiltered = songs;
     }
+
+
 
     @NonNull
     @Override
@@ -48,20 +51,20 @@ public class SongAdapter extends RecyclerView.Adapter<MyView> implements Filtera
         TextView title = holder.titletext;
         title.setText(song.getTitle());
         ImageView imageView = holder.image;
-        int imagedraw = song.getDrawable();
-        holder.image.setImageResource(imagedraw);
+        String imagedraw = song.getCoverArt();
+        Picasso.get().load(imagedraw).into(imageView);
 
 
 
         holder.removebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.playlist.remove(position);
+                HomeActivity.playList.remove(position);
 
 
                 Gson gson = new Gson();
-                String json = gson.toJson(MainActivity.playlist);
-                SharedPreferences sharedPreferences = context.getSharedPreferences("playlist", Context.MODE_PRIVATE);
+                String json = gson.toJson(HomeActivity.playList);
+                SharedPreferences sharedPreferences = context.getSharedPreferences("playList", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.clear().putString("list", json).apply();
 
@@ -123,6 +126,8 @@ public class SongAdapter extends RecyclerView.Adapter<MyView> implements Filtera
                         if (songs.get(i).getTitle().toLowerCase().contains(charString.toLowerCase())){
                             filteredSongs.add(songs.get(i));
 
+                        }else if(songs.get(i).getArtiste().toLowerCase().contains(charString.toLowerCase())){
+                            filteredSongs.add(songs.get(i));
                         }
 
                     }

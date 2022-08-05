@@ -14,6 +14,7 @@ public class MyView extends RecyclerView.ViewHolder {
     public ImageView image;
     public ImageView imageTest;
     public Button removebtn;
+    public ImageView addSong;
 
 
 
@@ -24,6 +25,7 @@ public class MyView extends RecyclerView.ViewHolder {
         image = itemView.findViewById(R.id.songImage);
         imageTest = itemView.findViewById(R.id.songimages);
         removebtn = itemView.findViewById(R.id.button2);
+        addSong = itemView.findViewById(R.id.addtoplaylist);
 
     }
 }

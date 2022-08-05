@@ -16,21 +16,30 @@
 
     <TextView
         android:id="@+id/titletext"
-        android:layout_width="80dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="124dp"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="12dp"
         android:ellipsize="marquee"
         android:focusable="true"
-
         android:focusableInTouchMode="true"
         android:marqueeRepeatLimit="marquee_forever"
         android:scrollHorizontally="true"
-        android:singleLine="true"
-        android:text="TextView"
 
+        android:singleLine="true"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/songimages"
-        app:layout_constraintTop_toTopOf="@+id/songimages" />
+        app:layout_constraintTop_toBottomOf="@+id/songimages" />
+
+    <ImageView
+        android:id="@+id/addtoplaylist"
+        android:layout_width="53dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="12dp"
+        android:contentDescription="S1001"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/titletext"
+        app:srcCompat="@android:drawable/ic_input_add" />
 
     <ImageView
         android:id="@+id/songimages"

@@ -3,6 +3,7 @@ package com.example.musicapp1;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -29,6 +31,9 @@ public class SongTestAdapter extends RecyclerView.Adapter<MyView> implements Fil
         this.songs = songs;
         this.songsFiltered = songs;
     }
+    public static ArrayList<Song> playlist = new ArrayList<Song>();
+    SharedPreferences sharedPreferences = HomeActivity.sharedPreferences;
+
 
     @NonNull
     @Override
@@ -38,6 +43,7 @@ public class SongTestAdapter extends RecyclerView.Adapter<MyView> implements Fil
         View songview = inflater.inflate(R.layout.item_songtest, parent,false);
         MyView viewholder =  new MyView(songview);
         return viewholder;
+
     }
 
     @Override
@@ -53,6 +59,10 @@ public class SongTestAdapter extends RecyclerView.Adapter<MyView> implements Fil
         String imageId = song.getCoverArt();
         Picasso.get().load(imageId).into(holder.imageTest);
         Log.d("why", String.valueOf(position));
+        ImageView addsong = holder.addSong;
+        Log.d("lol", song.getId());
+        addsong.setContentDescription(song.getId());
+
 
 
 
@@ -66,6 +76,19 @@ public class SongTestAdapter extends RecyclerView.Adapter<MyView> implements Fil
                 String songId = song.getId();
                 int currentArrayIndex = songCollection.searchSongById(songId);
                 sendDataToActivty(currentArrayIndex);
+            }
+        });
+
+        addsong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                playlist = HomeActivity.playList;
+                playlist.add(song);
+                Gson gson = new Gson();
+                String json = gson.toJson(playlist);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("list",json);
+                editor.apply();
             }
         });
 
@@ -131,6 +154,9 @@ public class SongTestAdapter extends RecyclerView.Adapter<MyView> implements Fil
             }
         };
 
+
+
     }
+
 
 }
