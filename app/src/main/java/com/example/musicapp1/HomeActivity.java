@@ -40,6 +40,8 @@ public class HomeActivity extends AppCompatActivity {
             Gson gson = new Gson();
             playList = gson.fromJson(albums, token.getType());
         }
+        getSupportActionBar().setTitle("Home");
+
 
 
         String url = "https://groovy-0594.restdb.io/rest/Real-Songs?apikey=1d3493a4d4d302a2925b8874f64559d1743bd";
@@ -77,5 +79,9 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(intent);
 
 
+    }
+    public void gotoprofile(View view) {
+        Intent intent = new Intent(this, UserProfile.class);
+        startActivity(intent);
     }
 }

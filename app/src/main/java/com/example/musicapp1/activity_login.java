@@ -79,7 +79,7 @@ public class activity_login extends AppCompatActivity {
     private void HomeActivty() {
 
         finish();
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
         startActivity(intent);
     }
 
