@@ -1,7 +1,5 @@
 package com.example.musicapp1;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,18 +13,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.chibde.visualizer.BarVisualizer;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
@@ -47,8 +36,10 @@ public class PlaySongActivity extends AppCompatActivity {
     private Songcollection shuffledSongCollection = new Songcollection();
     private MediaPlayer player = new MediaPlayer();
     private Button btnPlayPause = null;
-    private Button btnPlayNext = null;
-    List<Song> songs = HomeActivity.songList;
+    private ImageView imagePlayPause = null;
+    List<Song> shuffelist = Arrays.asList(songCollection.songs);
+
+
 
 
 
@@ -62,7 +53,6 @@ public class PlaySongActivity extends AppCompatActivity {
     Boolean shuffleFlag = false;
     Boolean repeatFlag = false;
     Button shuffleBtn;
-    List<Song> shuffleList = Arrays.asList(songCollection.songs);
     Button repeatBtn ;
 
 
@@ -77,7 +67,7 @@ public class PlaySongActivity extends AppCompatActivity {
 
 
 
-        btnPlayPause = findViewById(R.id.btnPlayPause);
+        imagePlayPause = findViewById(R.id.playandpauseImage);
         //songdata is the song id
         Bundle songData = this.getIntent().getExtras();
         //currentindex is the position of the current song playing in the array
@@ -136,12 +126,10 @@ public class PlaySongActivity extends AppCompatActivity {
 
     //Changes the display to the corresponding song based on the song index in the array
         public void displaySongBasedOnIndex () {
-            Song song = songs.get(currentIndex);
+            Song song = songCollection.getCurrentSongs(currentIndex);
             title = song.getTitle();
             artist = song.getArtiste();
-            Log.d("why", artist);
             filelink = song.getFilelink();
-            Log.d("why", filelink);
             drawable = song.getCoverArt();
             songLength = song.getSonglength();
             TextView txtTitle = findViewById(R.id.txtSongTitle);
@@ -160,7 +148,7 @@ public class PlaySongActivity extends AppCompatActivity {
                 player.prepare();
                 player.start();
                 stopmusicwhenends();
-                btnPlayPause.setText("PAUSE");
+                imagePlayPause.setImageResource(R.drawable.ic_baseline_pause_24);
                 setTitle(title);
                 seekBar.setMax(player.getDuration());
                 handler.removeCallbacks(p_bar);
@@ -178,17 +166,17 @@ public class PlaySongActivity extends AppCompatActivity {
             if (player.isPlaying()) {
                 player.pause();
 
-                btnPlayPause.setText("PLAY");
+                imagePlayPause.setImageResource(R.drawable.ic_baseline_play_arrow_24);
             } else {
                 player.start();
                 //sets the seek bar to only move until it reaches the max
                 seekBar.setMax(player.getDuration());
                 //when it loops i wont be moving the seek bar twice
                 handler.removeCallbacks(p_bar);
-                //every seconf
+                //every milisecond the bar moves
                 handler.postDelayed(p_bar, 1);
 
-                btnPlayPause.setText("PAUSE");
+                imagePlayPause.setImageResource(R.drawable.ic_baseline_pause_24);
             }
         }
 //stop the music when it ends
@@ -259,14 +247,15 @@ public class PlaySongActivity extends AppCompatActivity {
 
         if(shuffleFlag){
             shuffleBtn.setBackgroundResource(R.drawable.shuffle_off);
-            songCollection = new Songcollection();
+            songCollection = new Songcollection() ;
+            Log.d("working", String.valueOf(shuffelist));
         }
 
 
         else{
             shuffleBtn.setBackgroundResource(R.drawable.shuffle_on);
-            Collections.shuffle(shuffleList);
-            shuffleList.toArray(songCollection.songs);
+            Collections.shuffle(shuffelist);
+            shuffelist.toArray(songCollection.songs);
         }
 
 
@@ -289,11 +278,6 @@ public class PlaySongActivity extends AppCompatActivity {
 
     }
 
-    public void lyricsView(View view){
-        Intent intent = new Intent(this,Song_Lyrics.class);
-        intent.putExtra("key", currentIndex);
-        startActivity(intent);
-    }
 
 
 }

@@ -25,17 +25,9 @@ public class Song_Lyrics extends AppCompatActivity {
         lyrics = findViewById(R.id.lyrics);
         Bundle songData = this.getIntent().getExtras();
         currentIndex = songData.getInt("key");
-        displayLyricsBasedOnIndex();
 
     }
 
-    private void displayLyricsBasedOnIndex() {
-        Song song = songCollection.getCurrentSongs(currentIndex);
-
-        songLyrics = song.getLyrics();
-        lyrics.setText(songLyrics);
-        songName.setText(song.getTitle());
-    }
 
 
 }

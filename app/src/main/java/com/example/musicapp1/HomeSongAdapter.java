@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,16 +22,17 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SongAdapter extends RecyclerView.Adapter<MyView> implements Filterable {
+public class HomeSongAdapter extends RecyclerView.Adapter<MyView> implements Filterable {
     Songcollection songCollection = new Songcollection();
     List<Song> songsFiltered ;
     List<Song> songs;
     Context context;
-    public SongAdapter(List<Song> songs) {
+    public HomeSongAdapter(List<Song> songs) {
         this.songs = songs;
         this.songsFiltered = songs;
     }
-
+    public static ArrayList<Song> playlist = new ArrayList<Song>();
+    SharedPreferences sharedPreferences = HomeActivity.sharedPreferences;
 
 
     @NonNull
@@ -38,42 +40,33 @@ public class SongAdapter extends RecyclerView.Adapter<MyView> implements Filtera
     public MyView onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-        View songview = inflater.inflate(R.layout.item_song,parent,false);
+        View songview = inflater.inflate(R.layout.item_songhome, parent,false);
         MyView viewholder =  new MyView(songview);
         return viewholder;
+
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyView holder, @SuppressLint("RecyclerView") int position) {
         Song song = songsFiltered.get(position);
         TextView artist = holder.artisttext;
-        artist.setText(song.getArtiste());
+        String artistname = song.getArtiste();
+        artist.setText(artistname);
         TextView title = holder.titletext;
         title.setText(song.getTitle());
-        ImageView imageView = holder.image;
-        String imagedraw = song.getCoverArt();
-        Picasso.get().load(imagedraw).into(imageView);
+        title.setSelected(true);
+        ImageView imageView = holder.imageTest;
+        String imageId = song.getCoverArt();
+        Picasso.get().load(imageId).into(holder.imageTest);
+        Log.d("why", String.valueOf(position));
+        ImageView addsong = holder.addSong;
+        Log.d("lol", song.getId());
+        addsong.setContentDescription(song.getId());
 
 
 
-        holder.removebtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                HomeActivity.playList.remove(position);
 
 
-                Gson gson = new Gson();
-                String json = gson.toJson(HomeActivity.playList);
-                SharedPreferences sharedPreferences = context.getSharedPreferences("playList", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.clear().putString("list", json).apply();
-
-
-
-                notifyDataSetChanged();
-
-            }
-        });
 
 
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -83,6 +76,19 @@ public class SongAdapter extends RecyclerView.Adapter<MyView> implements Filtera
                 String songId = song.getId();
                 int currentArrayIndex = songCollection.searchSongById(songId);
                 sendDataToActivty(currentArrayIndex);
+            }
+        });
+
+        addsong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                playlist = HomeActivity.playList;
+                playlist.add(song);
+                Gson gson = new Gson();
+                String json = gson.toJson(playlist);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("list",json);
+                editor.apply();
             }
         });
 
@@ -126,8 +132,6 @@ public class SongAdapter extends RecyclerView.Adapter<MyView> implements Filtera
                         if (songs.get(i).getTitle().toLowerCase().contains(charString.toLowerCase())){
                             filteredSongs.add(songs.get(i));
 
-                        }else if(songs.get(i).getArtiste().toLowerCase().contains(charString.toLowerCase())){
-                            filteredSongs.add(songs.get(i));
                         }
 
                     }
@@ -149,5 +153,10 @@ public class SongAdapter extends RecyclerView.Adapter<MyView> implements Filtera
                 notifyDataSetChanged();
             }
         };
+
+
+
     }
+
+
 }

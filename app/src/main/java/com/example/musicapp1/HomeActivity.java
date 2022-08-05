@@ -49,7 +49,8 @@ public class HomeActivity extends AppCompatActivity {
                 Gson gson = new Gson();
                 TypeToken<ArrayList<Song>> token = new TypeToken<ArrayList<Song>>(){};
                 songList = gson.fromJson(response,token.getType());
-                SongTestAdapter adapter = new SongTestAdapter(songList);
+                HomeSongAdapter adapter = new HomeSongAdapter(songList);
+                Log.d("working", String.valueOf(songList));
 
 
                 trendingSongView.setAdapter(adapter);

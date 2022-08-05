@@ -11,17 +11,16 @@ public class Song {
     private String fileLink;
     private double songlength;
     private int drawable;
-    private String lyrics;
+
     private String coverArt;
 
-    public Song(String id, String title, String artiste, String fileLink, double songlength, int drawable, String lyrics, String coverArt) {
+    public Song(String id, String title, String artiste, String fileLink, double songlength, int drawable, String coverArt) {
         this.id = id;
         this.title = title;
         this.artiste = artiste;
         this.fileLink = fileLink;
         this.songlength = songlength;
         this.drawable = drawable ;
-        this.lyrics = lyrics;
         this.coverArt = coverArt;
     }
 
@@ -33,7 +32,6 @@ public class Song {
     public String getFilelink(){return fileLink;}
     public int getDrawable(){return drawable;}
     public double getSonglength(){return songlength;}
-    public String getLyrics(){return lyrics;}
     public String getCoverArt(){return coverArt;}
 
 

@@ -13,7 +13,7 @@ import android.widget.SearchView;
 
 public class PlaylistActivity extends AppCompatActivity {
 RecyclerView playlistView;
-SongAdapter songAdapter;
+PlaylistAdapter songAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +21,7 @@ SongAdapter songAdapter;
         setContentView(R.layout.activity_playlist);
         playlistView =  findViewById(R.id.recyclerview);
 
-        songAdapter = new SongAdapter(HomeActivity.playList);
+        songAdapter = new PlaylistAdapter(HomeActivity.playList);
         playlistView.setAdapter(songAdapter);
         playlistView.setLayoutManager(new LinearLayoutManager(this));
         SearchView searchView = findViewById(R.id.searchView);

@@ -8,6 +8,25 @@
     android:textAlignment="center"
     tools:context=".PlaySongActivity">
 
+    <com.chibde.visualizer.BarVisualizer
+        android:id="@+id/barVisualizer"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="218dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtArtist" />
+
     <ImageView
         android:id="@+id/imgCoverArt"
         android:layout_width="300dp"
@@ -21,114 +40,78 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/home" />
 
-    <Button
-        android:id="@+id/btnPlayPause"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="playOrPauseMusic"
-        android:text="PLAY"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.52"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgCoverArt"
-        app:layout_constraintVertical_bias="0.977" />
-
-    <Button
-        android:id="@+id/btnNext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="playnext"
-        android:text="NEXT"
-        app:layout_constraintBottom_toBottomOf="@+id/btnPlayPause"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnPlayPause"
-        app:layout_constraintTop_toTopOf="@+id/btnPlayPause" />
-
     <TextView
         android:id="@+id/txtSongTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="32dp"
         android:text="SongTitle"
         android:textAlignment="center"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnPlayPause"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgCoverArt"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="@+id/imgCoverArt"
+        app:layout_constraintTop_toBottomOf="@+id/imgCoverArt" />
 
     <TextView
         android:id="@+id/txtArtist"
         android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:layout_marginTop="28dp"
-        android:text="Artist"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtSongTitle" />
-
-    <Button
-        android:id="@+id/btnPrevious"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="playPrev"
-        android:text="PREV"
-        app:layout_constraintEnd_toStartOf="@+id/btnPlayPause"
-        app:layout_constraintHorizontal_bias="0.506"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btnPlayPause" />
-
-    <SeekBar
-        android:id="@+id/seekBar"
-        android:layout_width="218dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtArtist" />
+        android:layout_marginTop="16dp"
+        android:text="Artist"
+        app:layout_constraintStart_toStartOf="@+id/txtSongTitle"
+        app:layout_constraintTop_toBottomOf="@+id/txtSongTitle" />
 
     <Button
         android:id="@+id/shuffleBtn"
         android:layout_width="62dp"
         android:layout_height="49dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/shuffle_off"
         android:onClick="shuffleSong"
-        app:layout_constraintBottom_toTopOf="@+id/btnPrevious"
-        app:layout_constraintStart_toStartOf="@+id/btnPrevious" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <Button
         android:id="@+id/repeatBtn"
         android:layout_width="62dp"
         android:layout_height="49dp"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/repeat_off"
         android:onClick="repeatSong"
-        app:layout_constraintEnd_toEndOf="@+id/btnNext"
-        app:layout_constraintTop_toTopOf="@+id/shuffleBtn" />
-
-    <Button
-        android:id="@+id/lyricsBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="lyricsView"
-        android:text="Lyrics"
-        app:layout_constraintBottom_toTopOf="@+id/btnPlayPause"
-        app:layout_constraintEnd_toStartOf="@+id/repeatBtn"
-        app:layout_constraintStart_toEndOf="@+id/shuffleBtn"
-        app:layout_constraintTop_toTopOf="@+id/shuffleBtn" />
-
-    <com.chibde.visualizer.BarVisualizer
-        android:id="@+id/barVisualizer"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/shuffleBtn" />
+
+    <ImageView
+        android:id="@+id/playandpauseImage"
+        android:layout_width="72dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="80dp"
+        android:onClick="playOrPauseMusic"
+        app:layout_constraintBottom_toBottomOf="@+id/barVisualizer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_baseline_play_arrow_24" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="72dp"
+        android:layout_height="67dp"
+        android:layout_marginStart="52dp"
+        android:onClick="playPrev"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/playandpauseImage"
+        app:srcCompat="@drawable/ic_baseline_skip_previous_24" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="72dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="52dp"
+        android:onClick="playnext"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/playandpauseImage"
+        app:srcCompat="@drawable/ic_baseline_skip_next_24" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
