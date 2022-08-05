@@ -85,7 +85,7 @@ public class activity_login extends AppCompatActivity {
 
 
     public void gotomainactivity(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, HomeActivity.class);
         username = (TextView) findViewById(R.id.username);
         password = (TextView) findViewById(R.id.password);
         loginbtn = (Button) findViewById(R.id.loginbtn);
