@@ -15,11 +15,19 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.chibde.visualizer.BarVisualizer;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,14 +42,14 @@ public class PlaySongActivity extends AppCompatActivity {
     private String artist = " ";
     private String filelink = " ";
     private double songLength;
-    private int drawable;
+    private String drawable;
     private Songcollection songCollection = new Songcollection();
     private Songcollection shuffledSongCollection = new Songcollection();
     private MediaPlayer player = new MediaPlayer();
     private Button btnPlayPause = null;
     private Button btnPlayNext = null;
-    static ArrayList<Song> playlist = new ArrayList<Song>();
-    SharedPreferences sharedPreferences;
+    List<Song> songs = HomeActivity.songList;
+
 
 
 
@@ -62,29 +70,30 @@ public class PlaySongActivity extends AppCompatActivity {
     int audioseesionID = player.getAudioSessionId();
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_song);
+
+
+
         btnPlayPause = findViewById(R.id.btnPlayPause);
         //songdata is the song id
         Bundle songData = this.getIntent().getExtras();
         //currentindex is the position of the current song playing in the array
         currentIndex = songData.getInt("index");
-        displaySongBasedOnIndex();
         audioVisualizeView = findViewById(R.id.barVisualizer);
         audioVisualizeView.setColor(ContextCompat.getColor(this,R.color.teal_200));
         audioVisualizeView.setDensity(50);
 
 
-        sharedPreferences = getSharedPreferences("playList", MODE_PRIVATE);
-        String albums = sharedPreferences.getString("list", "");
-        if(!albums.equals("")){
-            TypeToken<ArrayList<Song>> token = new TypeToken<ArrayList<Song>>(){};
-            Gson gson = new Gson();
-            playlist = gson.fromJson(albums, token.getType());
-        }
+
+
+
+        displaySongBasedOnIndex();
+
+
+
 
 
 
@@ -127,18 +136,20 @@ public class PlaySongActivity extends AppCompatActivity {
 
     //Changes the display to the corresponding song based on the song index in the array
         public void displaySongBasedOnIndex () {
-            Song song = songCollection.getCurrentSongs(currentIndex);
+            Song song = songs.get(currentIndex);
             title = song.getTitle();
             artist = song.getArtiste();
+            Log.d("why", artist);
             filelink = song.getFilelink();
-            drawable = song.getDrawable();
+            Log.d("why", filelink);
+            drawable = song.getCoverArt();
             songLength = song.getSonglength();
             TextView txtTitle = findViewById(R.id.txtSongTitle);
             txtTitle.setText(title);
             TextView txtArtist = findViewById(R.id.txtArtist);
             txtArtist.setText(artist);
             ImageView iCoverArt = findViewById(R.id.imgCoverArt);
-            iCoverArt.setImageResource(drawable);
+            Picasso.get().load(drawable).into(iCoverArt);
 
         }
 //plays the song
@@ -284,19 +295,5 @@ public class PlaySongActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
-    public void addtoplaylist(View view) {
-        String songid = view.getContentDescription().toString();
-        int songindex = songCollection.searchSongById(songid);
-        Song song = songCollection.getCurrentSongs(songindex);
-        playlist.add(song);
-        Gson gson = new Gson();
-        String json = gson.toJson(playlist);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("list",json);
-        editor.apply();
-
-
-    }
 
 }

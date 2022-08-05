@@ -3,22 +3,18 @@ package com.example.musicapp1;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.LongDef;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -56,6 +52,7 @@ public class SongTestAdapter extends RecyclerView.Adapter<MyView> implements Fil
         ImageView imageView = holder.imageTest;
         String imageId = song.getCoverArt();
         Picasso.get().load(imageId).into(holder.imageTest);
+        Log.d("why", String.valueOf(position));
 
 
 

@@ -21,7 +21,7 @@
         <activity
             android:name=".HomeActivity"
             android:exported="true" >
-        <intent-filter>
+            <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
             <category android:name="android.intent.category.LAUNCHER" />
@@ -38,7 +38,9 @@
             android:exported="false" />
         <activity
             android:name=".activity_login"
-            android:exported="true" />
+            android:exported="true" >
+
+        </activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

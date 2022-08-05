@@ -36,7 +36,9 @@ public class HomeActivity extends AppCompatActivity {
                 Gson gson = new Gson();
                 TypeToken<ArrayList<Song>> token = new TypeToken<ArrayList<Song>>(){};
                 songList = gson.fromJson(response,token.getType());
+                Log.d("whyy", String.valueOf(songList.get(3).getTitle()));
                 SongTestAdapter adapter = new SongTestAdapter(songList);
+
                 trendingSongView.setAdapter(adapter);
                 trendingSongView.setLayoutManager(new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.HORIZONTAL,false));
 
