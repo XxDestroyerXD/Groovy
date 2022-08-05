@@ -24,7 +24,10 @@ import java.util.ArrayList;
 public class HomeActivity extends AppCompatActivity {
     public static ArrayList<Song> songList = new ArrayList<Song>();
     public static SharedPreferences sharedPreferences;
+    public static SharedPreferences sharedPreferences2;
     public static ArrayList<Song> playList = new ArrayList<Song>();
+    public static ArrayList<Song> playlist1 = new ArrayList<Song>();
+    public static ArrayList<Song> playlist2 = new ArrayList<Song>();
 
 
     @Override
@@ -38,7 +41,16 @@ public class HomeActivity extends AppCompatActivity {
         if(!albums.equals("")){
             TypeToken<ArrayList<Song>> token = new TypeToken<ArrayList<Song>>(){};
             Gson gson = new Gson();
-            playList = gson.fromJson(albums, token.getType());
+            playlist1 = gson.fromJson(albums, token.getType());
+
+        }
+        sharedPreferences2 = getSharedPreferences("playList2", MODE_PRIVATE);
+        String albums2 = sharedPreferences2.getString("list", "");
+        if(!albums2.equals("")){
+            TypeToken<ArrayList<Song>> token = new TypeToken<ArrayList<Song>>(){};
+            Gson gson = new Gson();
+            playlist2 = gson.fromJson(albums2, token.getType());
+
         }
         getSupportActionBar().setTitle("Home");
 
@@ -75,7 +87,7 @@ public class HomeActivity extends AppCompatActivity {
 
     public void gotoplayList(View view) {
 
-        Intent intent = new Intent(this, PlaylistActivity.class);
+        Intent intent = new Intent(this, PlaylistCollection.class);
         startActivity(intent);
 
 

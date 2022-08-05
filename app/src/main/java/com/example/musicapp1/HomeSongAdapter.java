@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,7 +62,7 @@ public class HomeSongAdapter extends RecyclerView.Adapter<MyView> implements Fil
         Log.d("why", String.valueOf(position));
         ImageView addsong = holder.addSong;
         Log.d("lol", song.getId());
-        addsong.setContentDescription(song.getId());
+//        addsong.setContentDescription(song.getId());
 
 
 
@@ -82,13 +83,12 @@ public class HomeSongAdapter extends RecyclerView.Adapter<MyView> implements Fil
         addsong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                playlist = HomeActivity.playList;
-                playlist.add(song);
-                Gson gson = new Gson();
-                String json = gson.toJson(playlist);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("list",json);
-                editor.apply();
+                String songId = song.getId();
+                int currentArrayIndex = songCollection.searchSongById(songId);
+                Intent intent = new Intent(context, ChoosePlaylist.class);
+                intent.putExtra("playlistdata", currentArrayIndex);
+                context.startActivity(intent);
+
             }
         });
 

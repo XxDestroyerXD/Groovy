@@ -11,9 +11,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.SearchView;
 
+import java.util.ArrayList;
+
 public class PlaylistActivity extends AppCompatActivity {
 RecyclerView playlistView;
 PlaylistAdapter songAdapter;
+int playlistcheck;
+    public static ArrayList<Song> playlist = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +25,17 @@ PlaylistAdapter songAdapter;
         setContentView(R.layout.activity_playlist);
         playlistView =  findViewById(R.id.recyclerview);
 
-        songAdapter = new PlaylistAdapter(HomeActivity.playList);
+        Bundle playlistData = this.getIntent().getExtras();
+        playlistcheck = playlistData.getInt("movetoplaylist");
+        if(playlistcheck == 1){
+
+        songAdapter = new PlaylistAdapter(HomeActivity.playlist1);
+        playlist = HomeActivity.playlist1;
+        }else{
+            songAdapter = new PlaylistAdapter(HomeActivity.playlist2);
+            playlist = HomeActivity.playlist2;
+        }
+
         playlistView.setAdapter(songAdapter);
         playlistView.setLayoutManager(new LinearLayoutManager(this));
         SearchView searchView = findViewById(R.id.searchView);
@@ -43,7 +57,7 @@ PlaylistAdapter songAdapter;
     }
 
     public void removeAll(View view) {
-        HomeActivity.playList.clear();
+        playlist.clear();
         SharedPreferences sharedPreferences = getSharedPreferences("playList",MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear().apply();

@@ -4,27 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ChoosePlaylist">
+    tools:context=".PlaylistCollection">
 
     <ImageView
-        android:id="@+id/playlist2"
+        android:id="@+id/gotoplaylist1"
         android:layout_width="131dp"
         android:layout_height="119dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
-        android:onClick="addsongtoplaylist2"
+        android:onClick="gotoplaylist1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/playlist1"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/albumcover1" />
 
     <ImageView
-        android:id="@+id/playlist1"
+        android:id="@+id/gotoplaylist2"
         android:layout_width="131dp"
         android:layout_height="119dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
-        android:onClick="addsongtoplaylist1"
+        android:onClick="gotoplaylist2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gotoplaylist1"
         app:srcCompat="@drawable/albumcover1" />
 </androidx.constraintlayout.widget.ConstraintLayout>

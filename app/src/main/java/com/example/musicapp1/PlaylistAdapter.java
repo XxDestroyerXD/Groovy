@@ -60,11 +60,11 @@ public class PlaylistAdapter extends RecyclerView.Adapter<MyView> implements Fil
         holder.removebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HomeActivity.playList.remove(position);
+                songsFiltered.remove(position);
 
 
                 Gson gson = new Gson();
-                String json = gson.toJson(HomeActivity.playList);
+                String json = gson.toJson(songsFiltered);
                 SharedPreferences sharedPreferences = context.getSharedPreferences("playList", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.clear().putString("list", json).apply();
