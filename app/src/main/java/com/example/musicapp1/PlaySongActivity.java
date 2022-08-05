@@ -75,6 +75,7 @@ public class PlaySongActivity extends AppCompatActivity {
         audioVisualizeView = findViewById(R.id.barVisualizer);
         audioVisualizeView.setColor(ContextCompat.getColor(this,R.color.purple_500));
         audioVisualizeView.setDensity(50);
+        audioVisualizeView.setAlpha((float) 0.1);
 
 
 
