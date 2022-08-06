@@ -28,4 +28,8 @@ public class PlaylistCollection extends AppCompatActivity {
         intent.putExtra("movetoplaylist",2);
         startActivity(intent);
     }
+    public void gotohomeactivity (View view){
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
+    }
 }
