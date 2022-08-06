@@ -15,7 +15,7 @@
         android:onClick="addsongtoplaylist2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/playlist1"
-        app:srcCompat="@drawable/albumcover1" />
+        app:srcCompat="@drawable/albumcover2" />
 
     <ImageView
         android:id="@+id/playlist1"

@@ -55,7 +55,7 @@
         android:onClick="gotoplaylist2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gotoplaylist1"
-        app:srcCompat="@drawable/albumcover1" />
+        app:srcCompat="@drawable/albumcover2" />
 
     <TextView
         android:id="@+id/textView4"
