@@ -135,6 +135,7 @@ public class PlaySongActivity extends AppCompatActivity {
             songLength = song.getSonglength();
             TextView txtTitle = findViewById(R.id.txtSongTitle);
             txtTitle.setText(title);
+            txtTitle.setSelected(true);
             TextView txtArtist = findViewById(R.id.txtArtist);
             txtArtist.setText(artist);
             ImageView iCoverArt = findViewById(R.id.imgCoverArt);
