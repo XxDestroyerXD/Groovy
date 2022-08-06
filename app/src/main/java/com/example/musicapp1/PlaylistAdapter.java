@@ -56,25 +56,44 @@ public class PlaylistAdapter extends RecyclerView.Adapter<MyView> implements Fil
         Picasso.get().load(imagedraw).into(imageView);
 
 
-
-        holder.removebtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                songsFiltered.remove(position);
-
-
-                Gson gson = new Gson();
-                String json = gson.toJson(songsFiltered);
-                SharedPreferences sharedPreferences = context.getSharedPreferences("playList", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.clear().putString("list", json).apply();
+        if (songsFiltered == HomeActivity.playlist1) {
+            holder.removebtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    songsFiltered.remove(position);
 
 
+                    Gson gson = new Gson();
+                    String json = gson.toJson(songsFiltered);
+                    SharedPreferences sharedPreferences = context.getSharedPreferences("playList", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.clear().putString("list", json).apply();
 
-                notifyDataSetChanged();
 
-            }
-        });
+                    notifyDataSetChanged();
+
+                }
+            });
+        }else{
+            holder.removebtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    songsFiltered.remove(position);
+
+
+                    Gson gson = new Gson();
+                    String json = gson.toJson(songsFiltered);
+                    SharedPreferences sharedPreferences = context.getSharedPreferences("playList2", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.clear().putString("list", json).apply();
+
+
+                    notifyDataSetChanged();
+
+                }
+            });
+
+        }
 
 
         imageView.setOnClickListener(new View.OnClickListener() {

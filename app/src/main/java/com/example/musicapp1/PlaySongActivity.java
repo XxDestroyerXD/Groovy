@@ -193,7 +193,7 @@ public class PlaySongActivity extends AppCompatActivity {
 
                     }else{
 
-                        btnPlayPause.setText("PLAY");
+                        imagePlayPause.setImageResource(R.drawable.ic_baseline_play_arrow_24);
 
                     }
 
@@ -205,8 +205,6 @@ public class PlaySongActivity extends AppCompatActivity {
 //plays the next song in the collection
         public void playnext (View view){
             currentIndex = songCollection.getNextSong(currentIndex);
-            Toast.makeText(this, "After clicking playnext, \nthe current index of this song \n" +
-                    "in the Songcollection array is now : " + currentIndex, Toast.LENGTH_LONG).show();
             displaySongBasedOnIndex();
             playsong(filelink);
 
@@ -214,8 +212,6 @@ public class PlaySongActivity extends AppCompatActivity {
 //plays the previous song in the collection
         public void playPrev (View view){
             currentIndex = songCollection.getPrevSong(currentIndex);
-            Toast.makeText(this, "After clicking playPrev, \nthe current index of this song \n" +
-                    "in the Songcollection array is now : " + currentIndex, Toast.LENGTH_LONG).show();
             displaySongBasedOnIndex();
             playsong(filelink);
         }
@@ -250,7 +246,6 @@ public class PlaySongActivity extends AppCompatActivity {
         if(shuffleFlag){
             shuffleBtn.setBackgroundResource(R.drawable.shuffle_off);
             songCollection = new Songcollection() ;
-            Log.d("working", String.valueOf(shuffelist));
         }
 
 

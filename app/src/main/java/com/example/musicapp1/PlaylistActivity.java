@@ -27,11 +27,14 @@ int playlistcheck;
 
         Bundle playlistData = this.getIntent().getExtras();
         playlistcheck = playlistData.getInt("movetoplaylist");
-        if(playlistcheck == 1){
 
-        songAdapter = new PlaylistAdapter(HomeActivity.playlist1);
-        playlist = HomeActivity.playlist1;
-        }else{
+
+        if(playlistcheck == 1){
+            songAdapter = new PlaylistAdapter(HomeActivity.playlist1);
+            playlist = HomeActivity.playlist1;
+        }
+
+        else{
             songAdapter = new PlaylistAdapter(HomeActivity.playlist2);
             playlist = HomeActivity.playlist2;
         }
@@ -57,10 +60,22 @@ int playlistcheck;
     }
 
     public void removeAll(View view) {
-        playlist.clear();
-        SharedPreferences sharedPreferences = getSharedPreferences("playList",MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.clear().apply();
-        songAdapter.notifyDataSetChanged();
+        if(playlistcheck == 1){
+            playlist.clear();
+            SharedPreferences sharedPreferences = getSharedPreferences("playList",MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.clear().apply();
+            songAdapter.notifyDataSetChanged();
+
+        }
+
+        else{
+            playlist.clear();
+            SharedPreferences sharedPreferences = getSharedPreferences("playList2",MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.clear().apply();
+            songAdapter.notifyDataSetChanged();
+        }
+
     }
 }
