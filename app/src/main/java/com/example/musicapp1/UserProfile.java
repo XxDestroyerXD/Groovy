@@ -61,6 +61,7 @@ public class UserProfile extends AppCompatActivity {
             }
 
 
+
 //set the signout btn to signout
         signOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,17 +72,36 @@ public class UserProfile extends AppCompatActivity {
 
 
 
-    }
+    }else{
+            name.setText("admin");
+            email.setText("admin@gmail.com");
+            profilePic.setImageResource(R.drawable.ic_baseline_person_outline_24);
+
+
+            signOutBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    signOut();
+                }
+            });
+        }
    }
 //code for signing out and going back to the login page
     private void signOut() {
-        //the code below signs the user out of their google account
-        Task<Void> voidTask = googleSignInClient.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(Task<Void> task) {
-                finish();
-                startActivity(new Intent(UserProfile.this, activity_login.class));
-            }
-        });
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(UserProfile.this);
+        if(account!=null) {
+            //the code below signs the user out of their google account
+            Task<Void> voidTask = googleSignInClient.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(Task<Void> task) {
+                    finish();
+                    startActivity(new Intent(UserProfile.this, activity_login.class));
+                }
+            });
+        }else{
+            Intent intent = new Intent(UserProfile.this,activity_login.class);
+            finish();
+            startActivity(intent);
+        }
     }
 }
